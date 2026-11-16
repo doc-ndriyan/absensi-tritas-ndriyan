@@ -103,8 +103,8 @@
     thead .sticky-2 { z-index: 30; }
     @media (min-width: 768px) {
       .sticky-1 { width: 42px; min-width: 42px; }
-      .sticky-nisn { display: table-cell; position: sticky; left: 42px; z-index: 20; width: 92px; min-width: 92px; }
-      .sticky-2 { left: 134px; width: 250px; min-width: 250px; }
+      .sticky-nisn { display: table-cell; position: sticky; left: 42px; z-index: 20; width: 108px; min-width: 108px; }
+      .sticky-2 { left: 150px; width: 250px; min-width: 250px; }
     }
 
     /* ==================== UKURAN TEKS TABEL (seragam: header, sel, input, select, textarea, badge) ==================== */
@@ -360,7 +360,8 @@
     }
 
     /* ==================== CP & TP: satu kolom ==================== */
-    #meta_cp { resize: none; overflow: hidden; min-height: 110px; line-height: 1.6; }
+    #meta_cp { flex: none !important; resize: none; overflow: hidden; min-height: 110px; line-height: 1.6; }
+    #tpList textarea { resize: none; overflow: hidden; line-height: 1.5; min-height: 38px; display: block; }
 
     /* ==================== TINDAK LANJUT: tabel ringkas ==================== */
     #recapTlBox { width: fit-content; max-width: calc(100% - 32px); margin: 0 auto 18px; }
@@ -369,6 +370,192 @@
     #recapTlBox > table td:nth-child(n+5) { min-width: 180px; max-width: 260px; white-space: normal; overflow-wrap: anywhere; vertical-align: top; text-align: left; }
     #recapTlBox > table td:nth-child(3) { white-space: nowrap; }
     @media (max-width: 639px) { #recapTlBox { max-width: calc(100% - 16px); } #recapTlBox > table { min-width: 0; } }
+
+    /* ==================== TAMPILAN HP (<= 767px): app bar ringkas, menu satu baris, bar judul rapi ==================== */
+    @media screen and (max-width: 767px) {
+      body { background: #f3f5f9; }
+      .print-box { padding: 10px 12px 0; }
+
+      /* ---- Header = app bar ---- */
+      header.rounded-2xl { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "brand menu" "klass save"; gap: 12px 8px; align-items: center; padding: 14px 12px 12px; margin-bottom: 10px; border-radius: 18px; }
+      #hdrTop, #hdrLeft, #hdrRight, #hdrBrandRow { display: contents; }
+      #hdrStatus, #quickShortcutGrid, .hdr-panduan { display: none !important; }
+      .view-sec span.underline { white-space: nowrap; }
+      #hdrBrand { grid-area: brand; align-items: center; min-width: 0; gap: 10px; }
+      #hdrBrand > div:first-child { width: 46px; height: 46px; border-radius: 14px; margin-top: 0; }
+      .hdr-main-title { font-size: 1.12rem; line-height: 1.15; }
+      .hdr-sub-teacher { font-size: 12.5px; margin-top: 2px; }
+      #hdrBrand .mt-2 { margin-top: 6px; gap: 6px; }
+      #hdrBrand .mt-2 > span { font-size: 11px; padding: 2px 9px; white-space: nowrap; }
+      #hdrBrand .mt-2 > span > i { display: none; }
+      #utilDropWrap { grid-area: menu; align-self: start; }
+      #utilDropWrap > button { min-height: 40px; padding: 0 12px; border-radius: 12px; }
+      #hdrClassBox { grid-area: klass; min-width: 0; min-height: 42px; border-radius: 12px; }
+      #classSelect { flex: 1 1 auto; min-width: 0; font-size: 14px; }
+      #hdrModes { display: none; }
+      #hdrSave { grid-area: save; width: 42px; min-height: 42px; padding: 0; justify-content: center; border-radius: 12px; }
+      #utilDropMenu { max-height: 72vh; overflow-y: auto; top: auto; }
+
+      /* ---- Menu kelompok -> satu baris chip yang bisa digeser ---- */
+      nav[aria-label="Menu Per Kelompok"] { padding: 8px 6px 8px 8px; border-radius: 16px; margin-bottom: 12px; }
+      nav[aria-label="Menu Per Kelompok"] > div { gap: 6px; padding-right: 8px; }
+      nav[aria-label="Menu Per Kelompok"] > div > div { display: contents; }
+      nav[aria-label="Menu Per Kelompok"] > div > div > div:first-child { display: contents; }
+      nav[aria-label="Menu Per Kelompok"] > div > div > div:first-child > span { display: none; }
+      nav[aria-label="Menu Per Kelompok"] > div > div > div.grid { display: contents; }
+      nav[aria-label="Menu Per Kelompok"] .nav-btn,
+      nav[aria-label="Menu Per Kelompok"] .nav-btn-all { flex: 0 0 auto; min-height: 40px; padding: 0 14px; border-radius: 999px; white-space: nowrap; overflow: visible; font-size: 13px; }
+      nav[aria-label="Menu Per Kelompok"] .nav-btn-all { background: #eef2ff; color: #4338ca; border: 1px solid #c7d2fe; font-weight: 700; text-decoration: none; }
+      nav[aria-label="Menu Per Kelompok"] > div > div:nth-child(2) .nav-btn.bg-white { border-color: #b7e4cf; }
+      nav[aria-label="Menu Per Kelompok"] > div > div:nth-child(3) .nav-btn.bg-white { border-color: #c9cdf5; }
+
+      /* ---- Bar judul kartu ---- */
+      .bg-gradient-to-r.from-brand-800 { padding: 14px 14px 12px; }
+      .bg-gradient-to-r.from-brand-800 h2, .bg-gradient-to-r.from-brand-800 h3 { font-size: 14px; line-height: 1.3; }
+      .bg-gradient-to-r.from-brand-800 button.m-ico { flex: 1 1 0; min-width: 46px; max-width: 72px; min-height: 42px; padding: 0; justify-content: center; border-radius: 12px; }
+      .bg-gradient-to-r.from-brand-800 button.m-ico span { display: none; }
+      .bg-gradient-to-r.from-brand-800 button.m-ico i { font-size: 15px; margin: 0; }
+      button.m-ico { min-width: 44px; min-height: 42px; padding: 0 12px; justify-content: center; border-radius: 12px; }
+      button.m-ico span { display: none; }
+      button.m-ico i { margin: 0; font-size: 15px; }
+      /* ---- Tabel rekap: NIS disembunyikan di HP agar nilai langsung terlihat ---- */
+      :is(#sec_rekap_nilai, #sec_rekap_tl) .rpt-box table:not(.rpt-grid) thead tr:first-child > th:nth-child(2),
+      :is(#sec_rekap_nilai, #sec_rekap_tl) .rpt-box table:not(.rpt-grid) tbody > tr > td:nth-child(2) { display: none; }
+      :is(#sec_rekap_nilai, #sec_rekap_tl) .rpt-box table:not(.rpt-grid) tbody > tr > td:nth-child(3) { max-width: 150px; overflow: hidden; text-overflow: ellipsis; }
+
+      /* ---- Header laporan: di HP cukup keterangan satu baris (judul sudah ada di bar judul) ---- */
+      .rpt-head { padding: 12px 14px 2px; }
+      .rpt-head .rpt-title, .rpt-head .rpt-info { display: none; }
+      .rpt-head .rpt-sub { margin: 0; font-size: 12.5px; font-weight: 600; color: #475569; }
+      #sec_rekap_tl .rpt-grid .rg-nama { width: 150px; min-width: 150px; max-width: 150px; overflow: hidden; text-overflow: ellipsis; }
+
+      /* ---- Tabel: gulir halaman biasa (tanpa gulir bersarang) ---- */
+      .view-sec .rpt-box { max-height: none; margin: 0 10px 14px; border-radius: 12px; }
+
+      /* ---- Identitas: kolom pendek dua per baris ---- */
+      #metaSchoolGrid, #metaTeacherGrid { display: grid !important; grid-template-columns: 1fr 1fr; gap: 10px; }
+      #metaSchoolGrid > div, #metaTeacherGrid > div { margin: 0 !important; min-width: 0; }
+      #metaSchoolGrid > div:nth-child(1), #metaSchoolGrid > div:nth-child(10), #metaTeacherGrid > div:nth-child(1), #metaTeacherGrid > div:nth-child(4) { grid-column: 1 / -1; }
+      /* ---- Daftar siswa: NISN disembunyikan di HP ---- */
+      #sec_identitas .rpt-box thead th:nth-child(1), #sec_identitas .rpt-box tbody td:nth-child(1),
+      #sec_identitas .rpt-box thead th:nth-child(3), #sec_identitas .rpt-box tbody td:nth-child(3) { display: none; }
+      #sec_identitas .rpt-box thead th:nth-child(2) { width: 108px; }
+      #sec_identitas .rpt-box tbody td:nth-child(4) { min-width: 150px; }
+      /* ---- Rekap: nama boleh turun baris (tidak dipotong) ---- */
+      :is(#sec_rekap_nilai, #sec_rekap_tl) .rpt-box table:not(.rpt-grid) tbody > tr > td:nth-child(3) { white-space: normal !important; overflow: visible; text-overflow: clip; min-width: 120px; max-width: 160px; line-height: 1.3; }
+
+      /* ---- Jendela popup menjadi lembar bawah ---- */
+      [id$="Modal"].fixed { align-items: flex-end; padding: 0; }
+      [id$="Modal"].fixed > .bg-white { width: 100%; max-width: 100%; border-radius: 22px 22px 0 0; max-height: 92vh; padding-bottom: 0; border-bottom: 0; }
+      /* baris tombol di bagian bawah lembar selalu terlihat */
+      [id$="Modal"].fixed > .bg-white > div:last-child { position: sticky; bottom: 0; z-index: 5; background: #fff; margin: 14px -20px 0; padding: 12px 20px calc(14px + env(safe-area-inset-bottom)); border-top: 1px solid #eef0f5; }
+
+      /* ---- Navigasi bawah ---- */
+      nav.fixed.bottom-0 { padding-bottom: env(safe-area-inset-bottom); }
+      footer { padding-bottom: 8px; }
+    }
+  </style>
+  <style id="rekap-hadir-rapi">
+    /* ==================== REKAP DAFTAR HADIR SISWA: perapian ====================
+       Akar masalah: kolom Nama berlebar "1%" + tabel "min-width: max-content" membuat tabel melebar
+       ±26.000 px, sehingga kolom Jumlah (H S I A %) dan Keterangan terdorong jauh ke kanan layar.
+       Perbaikan: lebar "1px" (kolom tetap menyusut mengikuti isinya tanpa membengkakkan tabel). */
+    #sec_rekap_tl .rpt-box table thead tr:first-child > th:nth-child(3),
+    #sec_rekap_tl .rpt-box table tbody > tr > td:nth-child(3) { width: 1px; }
+    #sec_rekap_tl .rpt-grid .rg-nama { width: 1px; min-width: 0; }
+
+    /* Mode non-kalender (Semester / Setahun / Semua Bulan): tabel ringkas di tengah, seperti Rekap Nilai */
+    #sec_rekap_tl .rpt-box:not(:has(> table.rpt-grid)) { width: fit-content; max-width: calc(100% - 32px); margin: 0 auto 18px; }
+    #sec_rekap_tl .rpt-box:not(:has(> table.rpt-grid)) > table { width: auto; min-width: 640px; }
+    #sec_rekap_tl .rpt-box:not(:has(> table.rpt-grid)) > table:not(.rpt-grid) td:not(.p-0\.5):not(.p-1) { padding-left: 12px; padding-right: 12px; }
+    #sec_rekap_tl .rpt-box > table:not(.rpt-grid) td:last-child { text-align: left; }
+    #sec_rekap_tl .rpt-box > table:not(.rpt-grid) thead tr:first-child > th:last-child { text-align: left; }
+
+    /* Kalender bulanan: muat satu layar, kolom Jumlah berwarna dan jelas terpisah dari tanggal */
+    #sec_rekap_tl .rpt-grid td.day, #sec_rekap_tl .rpt-grid th.day { width: 23px; min-width: 23px; font-size: 12px; }
+    #sec_rekap_tl .rpt-grid .rg-sum { width: 32px; min-width: 32px; }
+    #sec_rekap_tl .rpt-grid thead tr:nth-child(2) th.rg-sum:last-child,
+    #sec_rekap_tl .rpt-grid tbody td.rg-sum:last-child { width: 46px; min-width: 46px; }
+    @media (min-width: 640px) {
+      #sec_rekap_tl .rpt-grid .rg-no { width: 36px; min-width: 36px; }
+      #sec_rekap_tl .rpt-grid .rg-nis { left: 36px; width: 88px; min-width: 88px; }
+      #sec_rekap_tl .rpt-grid .rg-nama { left: 124px; }
+      #sec_rekap_tl .rpt-grid .rg-jk { width: 36px; min-width: 36px; }
+    }
+    #sec_rekap_tl .rpt-grid .rg-sum:nth-last-child(5) { border-left: 1px solid #cfc8ea; }
+    #sec_rekap_tl .rpt-grid tbody td.rg-sum:nth-last-child(5) { color: #047857; }
+    #sec_rekap_tl .rpt-grid tbody td.rg-sum:nth-last-child(4) { color: #b45309; }
+    #sec_rekap_tl .rpt-grid tbody td.rg-sum:nth-last-child(3) { color: #1d4ed8; }
+    #sec_rekap_tl .rpt-grid tbody td.rg-sum:nth-last-child(2) { color: #be123c; }
+    #sec_rekap_tl .rpt-grid tbody td.rg-sum:nth-last-child(1) { color: var(--rpt-ink); font-weight: 800; }
+
+    /* HP: nama dipotong agar kolom tanggal tetap terlihat */
+    @media (max-width: 639px) {
+      #sec_rekap_tl .rpt-grid .rg-nama { max-width: 112px; overflow: hidden; text-overflow: ellipsis; }
+      #sec_rekap_tl .rpt-box:not(:has(> table.rpt-grid)) { max-width: calc(100% - 16px); }
+      #sec_rekap_tl .rpt-box:not(:has(> table.rpt-grid)) > table { min-width: 0; }
+    }
+
+    /* Cetak A4 landscape: kalender 31 hari harus muat selebar kertas */
+    @media print {
+      #sec_rekap_tl .rpt-box:not(:has(> table.rpt-grid)) { width: auto; max-width: none; margin: 0 !important; }
+      #sec_rekap_tl .rpt-box > table { min-width: 0 !important; width: 100% !important; }
+      #sec_rekap_tl .rpt-grid { font-size: 9px; }
+      #sec_rekap_tl .rpt-grid th, #sec_rekap_tl .rpt-grid td { height: 17px; padding: 0 2px; }
+      #sec_rekap_tl .rpt-grid td.day, #sec_rekap_tl .rpt-grid th.day { width: 17px; min-width: 0; font-size: 8.5px; }
+      #sec_rekap_tl .rpt-grid .rg-sum, #sec_rekap_tl .rpt-grid thead tr:nth-child(2) th.rg-sum:last-child, #sec_rekap_tl .rpt-grid tbody td.rg-sum:last-child { width: 26px; min-width: 0; }
+      #sec_rekap_tl .rpt-grid .rg-sticky, #sec_rekap_tl .rpt-grid .rg-sum, #sec_rekap_tl .rpt-grid thead tr:first-child > th:last-child { position: static !important; box-shadow: none !important; }
+      #sec_rekap_tl .rpt-grid .rg-no { width: 26px; min-width: 0; }
+      #sec_rekap_tl .rpt-grid .rg-nis { width: 64px; min-width: 0; }
+      #sec_rekap_tl .rpt-grid .rg-hide-m { display: table-cell !important; }
+      #sec_rekap_tl .rpt-grid .rg-jk { width: 24px; min-width: 0; }
+      #sec_rekap_tl .rpt-grid tr { break-inside: avoid; }
+      #sec_rekap_tl .rpt-grid thead { display: table-header-group; }
+    }
+
+    /* ==================== REKAP NILAI & TINDAK LANJUT: perapian tabel ==================== */
+    /* Bug lebar "1%" yang sama juga membuat tabel Rekap Nilai melebar. */
+    #sec_rekap_nilai .rpt-box table thead tr:first-child > th:nth-child(3),
+    #sec_rekap_nilai .rpt-box table tbody > tr > td:nth-child(3) { width: 1px; }
+    #sec_rekap_nilai .rpt-box > table { min-width: 680px; }
+    #sec_rekap_nilai .rpt-box > table td:nth-child(n+5) { min-width: 84px; }
+    /* Predikat berwarna: A hijau, B biru, C kuning, D merah (diisi lewat atribut data-pred oleh skrip di bawah) */
+    #sec_rekap_nilai td[data-pred] { font-weight: 800; }
+    #sec_rekap_nilai td[data-pred="A"] { color: #047857; }
+    #sec_rekap_nilai td[data-pred="B"] { color: #1d4ed8; }
+    #sec_rekap_nilai td[data-pred="C"] { color: #b45309; }
+    #sec_rekap_nilai td[data-pred="D"] { color: #be123c; }
+    #sec_rekap_nilai tbody td, #sec_rekap_nilai thead th { white-space: nowrap; }
+    #recapTlBox > table { min-width: 720px; }
+    #recapTlBody td[colspan] { padding: 22px 16px; }
+    @media (max-width: 639px) { #sec_rekap_nilai .rpt-box table tbody > tr > td:nth-child(3) { max-width: 118px; overflow: hidden; text-overflow: ellipsis; } }
+    #recapTlBox { margin-top: 14px; }
+    #recapTlBox > table thead th:nth-child(n+5) { text-align: left; padding-left: 12px; }
+  </style>
+  <style id="rekap-samakan-lebar">
+    /* Semua tabel rekapitulasi (kehadiran, nilai, tindak lanjut) selebar kartunya, jadi seragam */
+    #sec_rekap_tl .rpt-box, #sec_rekap_nilai .rpt-box, #recapTlBox { width: auto !important; max-width: none !important; margin: 0 16px 16px !important; }
+    #sec_rekap_tl .rpt-box > table, #sec_rekap_nilai .rpt-box > table, #recapTlBox > table { width: 100% !important; min-width: 0 !important; }
+    @media (max-width: 639px) {
+      #sec_rekap_tl .rpt-box, #sec_rekap_nilai .rpt-box, #recapTlBox { margin: 0 8px 12px !important; }
+    }
+    @media print {
+      #sec_rekap_tl .rpt-box, #sec_rekap_nilai .rpt-box, #recapTlBox { margin: 0 !important; }
+    }
+  </style>
+  <style id="menu-semua-tampil">
+    /* Menu kelompok: semua tombol (termasuk Rekap Nilai & Absen & TL) selalu terlihat, tanpa geser tersembunyi */
+    @media (max-width: 1023px) {
+      nav[aria-label="Menu Per Kelompok"] > div { display: flex; flex-wrap: wrap; overflow: visible; }
+      nav[aria-label="Menu Per Kelompok"] > div > div { min-width: 0 !important; flex: 1 1 calc(50% - 4px); }
+      nav[aria-label="Menu Per Kelompok"] > div > div:first-child { flex-basis: 100%; }
+    }
+    @media (max-width: 767px) {
+      nav[aria-label="Menu Per Kelompok"] > div { gap: 6px; padding-right: 0; }
+      nav[aria-label="Menu Per Kelompok"] .nav-btn,
+      nav[aria-label="Menu Per Kelompok"] .nav-btn-all { min-height: 38px; padding: 0 12px; font-size: 12.5px; }
+      nav[aria-label="Menu Per Kelompok"] { padding-right: 8px; }
+    }
   </style>
 </head>
 <body class="antialiased selection:bg-sky-200 selection:text-brand-900 overflow-x-hidden pb-20 md:pb-6">
@@ -377,15 +564,15 @@
     <!-- ==================== HEADER UTAMA ==================== -->
     <header class="bg-gradient-to-r from-[#e3f1fc] via-[#eef7fe] to-[#d9ecfb] border border-sky-200 rounded-2xl p-3 sm:p-4 mb-3.5 shadow-xs card-shadow">
       <!-- Top Bar: Status, Multi-Rombel, Pilihan Versi & Utilitas -->
-      <div class="flex flex-wrap items-center justify-between gap-2 pb-2.5 mb-2.5 border-b border-sky-200/80 no-print">
-        <div class="flex flex-wrap items-center gap-1.5 sm:gap-2 text-xs sm:text-[13px]">
-          <span class="inline-flex items-center gap-1.5 bg-white/95 px-2.5 py-1.5 rounded-xl border border-sky-200 font-medium text-brand-800">
+      <div id="hdrTop" class="flex flex-wrap items-center justify-between gap-2 pb-2.5 mb-2.5 border-b border-sky-200/80 no-print">
+        <div id="hdrLeft" class="flex flex-wrap items-center gap-1.5 sm:gap-2 text-xs sm:text-[13px]">
+          <span id="hdrStatus" class="inline-flex items-center gap-1.5 bg-white/95 px-2.5 py-1.5 rounded-xl border border-sky-200 font-medium text-brand-800">
             <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
             <span id="saveStatus" class="hidden sm:inline">Tersimpan Otomatis</span>
             <span class="sm:hidden">Tersimpan</span>
           </span>
 
-          <div class="inline-flex items-center gap-1 bg-white/95 px-2 py-1 rounded-xl border border-sky-200 min-h-[36px]">
+          <div id="hdrClassBox" class="inline-flex items-center gap-1 bg-white/95 px-2 py-1 rounded-xl border border-sky-200 min-h-[36px]">
             <i class="fa-solid fa-layer-group text-brand-800 text-xs"></i>
             <select id="classSelect" aria-label="Pilih Rombel" onchange="switchClass(this.value)"
               class="font-display font-bold text-brand-800 bg-transparent focus:outline-none cursor-pointer px-1 text-xs sm:text-sm"></select>
@@ -396,9 +583,9 @@
           </div>
         </div>
 
-        <div class="flex flex-wrap items-center gap-1.5 ml-auto">
+        <div id="hdrRight" class="flex flex-wrap items-center gap-1.5 ml-auto">
           <!-- Sakelar Pilihan Versi Mobile / Desktop -->
-          <div
+          <div id="hdrModes"
             class="inline-flex items-center bg-white/95 p-0.5 rounded-xl border border-sky-200 text-[11px] sm:text-xs font-bold shadow-2xs"
             role="group" aria-label="Pilihan Versi Tampilan">
             <button onclick="setDisplayMode('auto')" id="dm_auto"
@@ -412,7 +599,7 @@
               title="Tampilan Tabel Lengkap Desktop"><i class="fa-solid fa-desktop"></i><span>Desktop</span></button>
           </div>
 
-          <button onclick="saveStore(true)" class="min-h-[36px] px-3 py-1.5 rounded-xl text-xs sm:text-[13px] font-semibold bg-emerald-600 text-white hover:bg-emerald-700 cursor-pointer flex items-center gap-1.5">
+          <button id="hdrSave" onclick="saveStore(true)" class="min-h-[36px] px-3 py-1.5 rounded-xl text-xs sm:text-[13px] font-semibold bg-emerald-600 text-white hover:bg-emerald-700 cursor-pointer flex items-center gap-1.5">
             <i class="fa-solid fa-floppy-disk"></i><span class="hidden sm:inline">Simpan</span>
           </button>
           <div class="relative" id="utilDropWrap">
@@ -420,6 +607,14 @@
               <i class="fa-solid fa-sliders"></i><span class="hidden sm:inline">Utilitas &amp; Laporan</span><span class="sm:hidden">Menu</span><i class="fa-solid fa-chevron-down text-[10px]"></i>
             </button>
             <div id="utilDropMenu" class="hidden fixed sm:absolute left-2.5 right-2.5 sm:left-auto sm:right-0 mt-1.5 sm:w-64 bg-white rounded-2xl shadow-2xl border border-slate-200 py-1.5 z-50 text-[13px]">
+              <div class="md:hidden px-3.5 py-2.5 border-b border-slate-100">
+                <div class="text-[11px] font-bold uppercase text-slate-400 mb-1.5">Tampilan</div>
+                <div class="grid grid-cols-3 gap-1.5">
+                  <button id="dm2_auto" onclick="setDisplayMode('auto')" class="min-h-[38px] rounded-lg text-xs font-bold bg-slate-100 text-slate-700 cursor-pointer">Auto</button>
+                  <button id="dm2_mobile" onclick="setDisplayMode('mobile')" class="min-h-[38px] rounded-lg text-xs font-bold bg-slate-100 text-slate-700 cursor-pointer">Kartu</button>
+                  <button id="dm2_desktop" onclick="setDisplayMode('desktop')" class="min-h-[38px] rounded-lg text-xs font-bold bg-slate-100 text-slate-700 cursor-pointer">Tabel</button>
+                </div>
+              </div>
               <div class="px-3.5 py-1.5 text-[11px] font-bold uppercase text-slate-400 border-b border-slate-100">Laporan &amp; Ekspor</div>
               <button onclick="exportExcel(); toggleUtilDrop(false)" class="w-full min-h-[38px] px-3.5 py-2 text-left hover:bg-sky-50 flex items-center gap-2.5 text-slate-700 font-medium cursor-pointer"><i class="fa-solid fa-file-excel text-emerald-600 w-4"></i>Export Excel (Kelas Aktif)</button>
               <button onclick="exportExcel(true); toggleUtilDrop(false)" class="w-full min-h-[38px] px-3.5 py-2 text-left hover:bg-sky-50 flex items-center gap-2.5 text-slate-700 font-medium cursor-pointer"><i class="fa-solid fa-table-cells text-teal-600 w-4"></i>Template Excel Kosong</button>
@@ -442,8 +637,8 @@
       </div>
 
       <!-- Brand & Judul Bertingkat Proporsional -->
-      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
-        <div class="flex items-start sm:items-center gap-3">
+      <div id="hdrBrandRow" class="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
+        <div id="hdrBrand" class="flex items-start sm:items-center gap-3">
           <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-b from-[#1a6bc4] to-[#0f3f7a] p-2 flex items-center justify-center shadow-sm border-2 border-white shrink-0 mt-0.5 sm:mt-0">
             <svg viewBox="0 0 100 100" class="w-full h-full" fill="none">
               <polygon points="50,6 91,34 76,88 24,88 9,34" stroke="#bae6fd" stroke-width="4" fill="#134e8e"/>
@@ -462,7 +657,7 @@
             <div class="mt-2 flex flex-wrap items-center gap-1.5">
               <span class="bg-brand-800 text-white font-bold text-xs px-2.5 py-0.5 rounded-full"><i class="fa-solid fa-users-rectangle text-sky-200 mr-1"></i>Kelas <span id="hdrClassBadge">X-1</span></span>
               <span class="bg-white/95 text-brand-800 font-bold text-xs px-2.5 py-0.5 rounded-full border border-sky-200"><i class="fa-solid fa-calendar-days text-sky-600 mr-1"></i>TA <span id="hdrTaBadge">2026/2027</span></span>
-              <span class="bg-amber-300/90 text-brand-900 font-bold text-[11px] sm:text-xs px-2.5 py-0.5 rounded-full border border-amber-400">Panduan Asesmen Revisi 2025</span>
+              <span class="hdr-panduan bg-amber-300/90 text-brand-900 font-bold text-[11px] sm:text-xs px-2.5 py-0.5 rounded-full border border-amber-400">Panduan Asesmen Revisi 2025</span>
             </div>
           </div>
         </div>
@@ -636,7 +831,7 @@
           <h3 class="font-display font-bold text-xs sm:text-sm uppercase"><i class="fa-solid fa-users mr-2 text-sky-200"></i>Daftar Peserta Didik Kelas <span id="rosterClassLbl">X-1</span></h3>
           <div class="flex flex-wrap gap-1.5 no-print">
             <button onclick="openModal('pasteModal')" class="min-h-[32px] px-2.5 py-1 rounded-lg text-xs font-bold bg-white/15 hover:bg-white/25 cursor-pointer"><i class="fa-solid fa-paste mr-1"></i>Tempel Excel</button>
-            <button onclick="openImportModal()" class="min-h-[32px] px-2.5 py-1 rounded-lg text-xs font-bold bg-white/15 hover:bg-white/25 cursor-pointer"><i class="fa-solid fa-file-import mr-1"></i>Import Excel</button>
+            <button onclick="openImportModal()" class="min-h-[32px] px-2.5 py-1 rounded-lg text-xs font-bold bg-white/15 hover:bg-white/25 cursor-pointer m-ico" title="Import Excel" aria-label="Import Excel"><i class="fa-solid fa-file-import mr-1"></i><span>Import Excel</span></button>
             <button onclick="exportExcel()" class="min-h-[32px] px-2.5 py-1 rounded-lg text-xs font-bold bg-white/15 hover:bg-white/25 cursor-pointer"><i class="fa-solid fa-file-excel mr-1"></i>Export Excel</button>
             <button onclick="addStudent()" class="min-h-[32px] px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-500 hover:bg-emerald-600 cursor-pointer"><i class="fa-solid fa-user-plus mr-1"></i>+ Siswa</button>
           </div>
@@ -703,9 +898,9 @@
           </div>
           <button onclick="addMeeting()" class="min-h-[38px] px-3 py-1.5 rounded-xl text-xs sm:text-[13px] font-bold bg-emerald-500 hover:bg-emerald-600 text-white cursor-pointer"><i class="fa-solid fa-calendar-plus mr-1"></i>Pertemuan</button>
           <button onclick="syncAbsenToGrades(true)" class="min-h-[38px] px-3 py-1.5 rounded-xl text-xs sm:text-[13px] font-bold bg-amber-400 hover:bg-amber-500 text-brand-900 cursor-pointer"><i class="fa-solid fa-arrows-rotate mr-1"></i>Sinkron ke Nilai</button>
-          <button onclick="exportExcelFocus('presensi')" class="min-h-[38px] px-3 py-1.5 rounded-xl text-xs sm:text-[13px] font-bold bg-white/15 hover:bg-white/25 text-white cursor-pointer flex items-center gap-1"><i class="fa-solid fa-file-excel"></i><span>Export Excel</span></button>
-          <button onclick="openImportModal('presensi', 'Presensi')" class="min-h-[38px] px-3 py-1.5 rounded-xl text-xs sm:text-[13px] font-bold bg-white/15 hover:bg-white/25 text-white cursor-pointer flex items-center gap-1"><i class="fa-solid fa-file-import"></i><span>Import Excel</span></button>
-          <button onclick="openWaModal('meeting')" class="min-h-[38px] px-3 py-1.5 rounded-xl text-xs sm:text-[13px] font-bold bg-emerald-500 hover:bg-emerald-600 text-white cursor-pointer flex items-center gap-1"><i class="fa-solid fa-comments"></i><span>Laporan WA</span></button>
+          <button onclick="exportExcelFocus('presensi')" class="min-h-[38px] px-3 py-1.5 rounded-xl text-xs sm:text-[13px] font-bold bg-white/15 hover:bg-white/25 text-white cursor-pointer flex items-center gap-1 m-ico" title="Export Excel" aria-label="Export Excel"><i class="fa-solid fa-file-excel"></i><span>Export Excel</span></button>
+          <button onclick="openImportModal('presensi', 'Presensi')" class="min-h-[38px] px-3 py-1.5 rounded-xl text-xs sm:text-[13px] font-bold bg-white/15 hover:bg-white/25 text-white cursor-pointer flex items-center gap-1 m-ico" title="Import Excel" aria-label="Import Excel"><i class="fa-solid fa-file-import"></i><span>Import Excel</span></button>
+          <button onclick="openWaModal('meeting')" class="min-h-[38px] px-3 py-1.5 rounded-xl text-xs sm:text-[13px] font-bold bg-emerald-500 hover:bg-emerald-600 text-white cursor-pointer flex items-center gap-1 m-ico" title="Laporan WA" aria-label="Laporan WA"><i class="fa-solid fa-comments"></i><span>Laporan WA</span></button>
         </div>
       </div>
 
@@ -796,9 +991,9 @@
         </div>
         <div class="flex flex-wrap items-center gap-1.5">
           <button onclick="syncBabToSemester()" class="min-h-[36px] px-3 py-1.5 rounded-xl font-bold bg-amber-400 text-brand-950 hover:bg-amber-500 cursor-pointer"><i class="fa-solid fa-arrows-rotate mr-1"></i>Sinkron ke Rapor</button>
-          <button onclick="exportBabCSV()" class="min-h-[36px] px-3 py-1.5 rounded-xl font-bold bg-emerald-600 text-white hover:bg-emerald-700 cursor-pointer"><i class="fa-solid fa-file-csv mr-1"></i>CSV Bab</button>
-          <button onclick="exportExcelFocus('nilai')" class="min-h-[36px] px-3 py-1.5 rounded-xl font-bold bg-sky-50 text-brand-800 border border-sky-200 hover:bg-sky-100 cursor-pointer flex items-center gap-1"><i class="fa-solid fa-file-excel"></i><span>Export Excel</span></button>
-          <button onclick="openImportModal('nilai', 'Penilaian')" class="min-h-[36px] px-3 py-1.5 rounded-xl font-bold bg-sky-50 text-brand-800 border border-sky-200 hover:bg-sky-100 cursor-pointer flex items-center gap-1"><i class="fa-solid fa-file-import"></i><span>Import Excel</span></button>
+          <button onclick="exportBabCSV()" class="min-h-[36px] px-3 py-1.5 rounded-xl font-bold bg-emerald-600 text-white hover:bg-emerald-700 cursor-pointer m-ico" title="CSV Bab" aria-label="CSV Bab"><i class="fa-solid fa-file-csv mr-1"></i><span>CSV Bab</span></button>
+          <button onclick="exportExcelFocus('nilai')" class="min-h-[36px] px-3 py-1.5 rounded-xl font-bold bg-sky-50 text-brand-800 border border-sky-200 hover:bg-sky-100 cursor-pointer flex items-center gap-1 m-ico" title="Export Excel" aria-label="Export Excel"><i class="fa-solid fa-file-excel"></i><span>Export Excel</span></button>
+          <button onclick="openImportModal('nilai', 'Penilaian')" class="min-h-[36px] px-3 py-1.5 rounded-xl font-bold bg-sky-50 text-brand-800 border border-sky-200 hover:bg-sky-100 cursor-pointer flex items-center gap-1 m-ico" title="Import Excel" aria-label="Import Excel"><i class="fa-solid fa-file-import"></i><span>Import Excel</span></button>
         </div>
       </div>
 
@@ -899,8 +1094,8 @@
           <h3 class="font-display font-bold text-xs sm:text-sm uppercase"><i class="fa-solid fa-award mr-2 text-amber-300"></i>Rekapitulasi Nilai Akhir &amp; Predikat Setahun</h3>
           <div class="flex flex-wrap items-center justify-end gap-1.5 no-print">
             <span class="text-[11px] bg-white/15 px-2.5 py-0.5 rounded-full">A &ge; 90 &bull; B &ge; 80 &bull; C &ge; 70</span>
-            <button onclick="exportExcelFocus('rekapnilai')" class="min-h-[34px] px-3 py-1.5 rounded-xl text-xs sm:text-[13px] font-bold bg-white/15 hover:bg-white/25 text-white cursor-pointer flex items-center gap-1"><i class="fa-solid fa-file-excel"></i><span>Export Excel</span></button>
-          <button onclick="openImportModal('nilai', 'Rekap Nilai')" class="min-h-[34px] px-3 py-1.5 rounded-xl text-xs sm:text-[13px] font-bold bg-white/15 hover:bg-white/25 text-white cursor-pointer flex items-center gap-1"><i class="fa-solid fa-file-import"></i><span>Import Excel</span></button>
+            <button onclick="exportExcelFocus('rekapnilai')" class="min-h-[34px] px-3 py-1.5 rounded-xl text-xs sm:text-[13px] font-bold bg-white/15 hover:bg-white/25 text-white cursor-pointer flex items-center gap-1 m-ico" title="Export Excel" aria-label="Export Excel"><i class="fa-solid fa-file-excel"></i><span>Export Excel</span></button>
+          <button onclick="openImportModal('nilai', 'Rekap Nilai')" class="min-h-[34px] px-3 py-1.5 rounded-xl text-xs sm:text-[13px] font-bold bg-white/15 hover:bg-white/25 text-white cursor-pointer flex items-center gap-1 m-ico" title="Import Excel" aria-label="Import Excel"><i class="fa-solid fa-file-import"></i><span>Import Excel</span></button>
           </div>
         </div>
         <div id="rpt_rekap_nilai" class="rpt-head"></div>
@@ -947,12 +1142,12 @@
               <button onclick="setRecapAbsenMode('setahun')" id="raMode_setahun"
                 class="min-h-[32px] px-2.5 py-1 rounded-lg text-white hover:bg-white/10 cursor-pointer">Setahun</button>
             </div>
-            <button onclick="exportRecapAbsenCSV()" class="min-h-[36px] px-3 py-1.5 rounded-xl text-xs font-bold bg-emerald-500 hover:bg-emerald-600 text-white cursor-pointer flex items-center gap-1">
+            <button onclick="exportRecapAbsenCSV()" class="min-h-[36px] px-3 py-1.5 rounded-xl text-xs font-bold bg-emerald-500 hover:bg-emerald-600 text-white cursor-pointer flex items-center gap-1 m-ico" title="CSV Rekap" aria-label="CSV Rekap">
               <i class="fa-solid fa-file-csv"></i><span>CSV Rekap</span>
             </button>
-            <button onclick="exportExcelFocus('rekaphadir')" class="min-h-[36px] px-3 py-1.5 rounded-xl text-xs sm:text-[13px] font-bold bg-white/15 hover:bg-white/25 text-white cursor-pointer flex items-center gap-1"><i class="fa-solid fa-file-excel"></i><span>Export Excel</span></button>
-          <button onclick="openImportModal('presensi', 'Rekap Kehadiran')" class="min-h-[36px] px-3 py-1.5 rounded-xl text-xs sm:text-[13px] font-bold bg-white/15 hover:bg-white/25 text-white cursor-pointer flex items-center gap-1"><i class="fa-solid fa-file-import"></i><span>Import Excel</span></button>
-          <button onclick="openWaModal('month')" class="min-h-[38px] px-3 py-1.5 rounded-xl text-xs sm:text-[13px] font-bold bg-emerald-500 hover:bg-emerald-600 text-white cursor-pointer flex items-center gap-1"><i class="fa-solid fa-comments"></i><span>Laporan WA</span></button>
+            <button onclick="exportExcelFocus('rekaphadir')" class="min-h-[36px] px-3 py-1.5 rounded-xl text-xs sm:text-[13px] font-bold bg-white/15 hover:bg-white/25 text-white cursor-pointer flex items-center gap-1 m-ico" title="Export Excel" aria-label="Export Excel"><i class="fa-solid fa-file-excel"></i><span>Export Excel</span></button>
+          <button onclick="openImportModal('presensi', 'Rekap Kehadiran')" class="min-h-[36px] px-3 py-1.5 rounded-xl text-xs sm:text-[13px] font-bold bg-white/15 hover:bg-white/25 text-white cursor-pointer flex items-center gap-1 m-ico" title="Import Excel" aria-label="Import Excel"><i class="fa-solid fa-file-import"></i><span>Import Excel</span></button>
+          <button onclick="openWaModal('month')" class="min-h-[38px] px-3 py-1.5 rounded-xl text-xs sm:text-[13px] font-bold bg-emerald-500 hover:bg-emerald-600 text-white cursor-pointer flex items-center gap-1 m-ico" title="Laporan WA" aria-label="Laporan WA"><i class="fa-solid fa-comments"></i><span>Laporan WA</span></button>
           </div>
         </div>
 
@@ -2923,6 +3118,16 @@
       if (k.startsWith('XI')) return 'XI';
       return 'X';
     };
+    // KKTP default per tingkat: Kelas X = 80, XI = 83, XII = 85
+    const KKTP_LEVEL = { X: 80, XI: 83, XII: 85 };
+    const kktpFor = (kelas = '') => KKTP_LEVEL[detectPresetKey(kelas)] || 75;
+    // Migrasi sekali: samakan KKTP seluruh rombel dengan aturan tingkat (setelah itu bisa diubah manual per rombel)
+    function applyKktpLevel() {
+      Object.entries(store.classes || {}).forEach(([kls, w]) => {
+        if (w && w.meta) w.meta.kktp = kktpFor(w.meta.kelas || kls);
+      });
+      store.kktpLevelVer = 1;
+    }
 
     const newAgenda = (pertemuan = 1, semester = 'ganjil') => ({
       id: uid('ag'),
@@ -3016,7 +3221,7 @@
         : Array.from({ length: 8 }, () => newStudent());
 
       return {
-        meta: { ...DEFAULT_META, kelas, fase: fase || preset.fase, cp: preset.cp },
+        meta: { ...DEFAULT_META, kelas, fase: fase || preset.fase, kktp: kktpFor(kelas), cp: preset.cp },
         tps: [...preset.tps],
         agendas: buildAgendasFromPreset(pKey),
         babs,
@@ -3109,6 +3314,7 @@
           if (!store.classes[store.activeClass]) store.activeClass = 'X.E-1';
           // Migrasi sekali: samakan daftar siswa (NIS, nama, JK) dengan file Excel resmi
           if (store.rosterVer !== ROSTER_VER) { applyOfficialRosterAll(); saveStore(false); }
+          if (store.kktpLevelVer !== 1) { applyKktpLevel(); saveStore(false); }
           Object.values(store.classes).forEach(w => {
             if (!Array.isArray(w.babs) || !w.babs.length) {
               const pKey = detectPresetKey(w.meta?.kelas);
@@ -3349,7 +3555,7 @@
     }
 
     function updateMeta(key, val) {
-      if (key === 'kktp') val = Number(clampScore(val) || 75);
+      if (key === 'kktp') val = Number(clampScore(val) || kktpFor(ws().meta.kelas));
       ws().meta[key] = val;
       syncHeaderBadges();
       if (key === 'kktp') { renderGrades(); renderRecaps(); }
@@ -3377,10 +3583,10 @@
     function renderTpList() {
       const tps = ws().tps;
       document.getElementById('tpList').innerHTML = tps.map((tp, i) => `
-        <div class="flex items-center gap-2">
-          <span class="font-bold text-brand-800 w-9 shrink-0">TP${i + 1}.</span>
-          <input value="${esc(tp)}" onchange="updateTp(${i}, this.value)" placeholder="Tuliskan rumusan Tujuan Pembelajaran ${i + 1}..." class="flex-1 border border-slate-200 bg-slate-50/70 rounded-xl px-2.5 py-1.5 focus:outline-none focus:border-brand-800 focus:bg-white" />
-          ${tps.length > 1 ? `<button onclick="removeTp(${i})" class="no-print text-slate-400 hover:text-rose-600 px-1.5 cursor-pointer"><i class="fa-solid fa-xmark"></i></button>` : ''}
+        <div class="flex items-start gap-2">
+          <span class="font-bold text-brand-800 w-9 shrink-0 pt-2">TP${i + 1}.</span>
+          <textarea rows="1" onchange="updateTp(${i}, this.value)" placeholder="Tuliskan rumusan Tujuan Pembelajaran ${i + 1}..." class="flex-1 border border-slate-200 bg-slate-50/70 rounded-xl px-2.5 py-1.5 focus:outline-none focus:border-brand-800 focus:bg-white leading-relaxed">${esc(tp)}</textarea>
+          ${tps.length > 1 ? `<button onclick="removeTp(${i})" class="no-print text-slate-400 hover:text-rose-600 px-1.5 pt-2 cursor-pointer"><i class="fa-solid fa-xmark"></i></button>` : ''}
         </div>`).join('');
     }
     function updateTp(i, val) { ws().tps[i] = val; saveStore(false); }
@@ -4695,7 +4901,7 @@
         const w = ws();
         const lvl = detectPresetKey(w.meta.kelas || store.activeClass);
         const preset = CURRICULUM_PRESETS[lvl];
-        Object.assign(w.meta, { sekolah: 'SMAN 3 Tasikmalaya', npsn: '20224513', tahun: '2026/2027', kelas: store.activeClass, fase: preset.fase, mapel: 'Informatika', guru: 'Andri Andriyan, S.T', jabatan: 'Guru Mata Pelajaran Informatika', kktp: 75, cp: preset.cp });
+        Object.assign(w.meta, { sekolah: 'SMAN 3 Tasikmalaya', npsn: '20224513', tahun: '2026/2027', kelas: store.activeClass, fase: preset.fase, mapel: 'Informatika', guru: 'Andri Andriyan, S.T', jabatan: 'Guru Mata Pelajaran Informatika', kktp: kktpFor(store.activeClass), cp: preset.cp });
         w.tps = [...preset.tps];
         w.agendas = buildAgendasFromPreset(lvl);
         w.babs = preset.babs.map(b => ({ ...b, id: uid('bab') }));
@@ -6058,7 +6264,7 @@
     // Blok judul + info (Sekolah, Kecamatan, ... | Tahun Pelajaran, Kelas, Mata pelajaran)
     function rptHeadHtml(title, sub, w) {
       const m = w.meta, v = (x) => esc(x) || '-';
-      const col = (rows) => `<div>${rows.map(([k, val]) => `<div class="rpt-row"><span class="rpt-k">${k}</span><span class="rpt-v">${v(val)}</span></div>`).join('')}</div>`;
+      const col = (rows) => `<div>${rows.map(([k, val]) => `<div class="rpt-row${v(val) === '-' ? ' rpt-empty' : ''}"><span class="rpt-k">${k}</span><span class="rpt-v">${v(val)}</span></div>`).join('')}</div>`;
       return `<h2 class="rpt-title">${esc(title)}</h2><p class="rpt-sub">${sub}</p>
         <div class="rpt-info">${col([['Sekolah', m.sekolah], ['Kecamatan', m.kecamatan], ['Kabupaten/Kota', m.kabupaten], ['Provinsi', m.provinsi]])}${col([['Tahun Pelajaran', m.tahun], ['Kelas', m.kelas], ['Mata pelajaran', m.mapel]])}</div>`;
     }
@@ -6189,47 +6395,6 @@
     };
   </script>
 
-  <script id="table-fit">
-    // ==================== TABEL RAPI: kolom teks otomatis menyesuaikan tinggi isi ====================
-    (() => {
-      const fitOne = (t) => {
-        if (!t.offsetParent) return;            // tersembunyi (tab lain): lewati
-        t.style.height = 'auto';
-        const h = t.scrollHeight;
-        if (h > 0) t.style.height = (h + 2) + 'px';
-      };
-      const fitAll = (root = document) => root.querySelectorAll('.view-sec table textarea, #meta_cp').forEach(fitOne);
-      // Header bertingkat: setiap baris header menempel tepat di bawah baris sebelumnya
-      const stickHeads = () => document.querySelectorAll('.view-sec .rpt-box > table').forEach((t) => {
-        let top = 0;
-        t.querySelectorAll(':scope > thead > tr').forEach((tr) => {
-          [...tr.children].forEach((c) => { c.style.top = top + 'px'; });
-          top += tr.getBoundingClientRect().height;
-        });
-      });
-      let queued = false;
-      const schedule = () => {
-        if (queued) return; queued = true;
-        requestAnimationFrame(() => { queued = false; fitAll(); stickHeads(); });
-      };
-      window.fitTableText = schedule;
-      // ketik langsung -> tinggi ikut berubah
-      document.addEventListener('input', (e) => { if (e.target.matches && e.target.matches('.view-sec table textarea, #meta_cp')) fitOne(e.target); });
-      // tabel dirender ulang oleh aplikasi
-      new MutationObserver((list) => {
-        if (list.some((m) => [...m.addedNodes].some((n) => n.nodeType === 1 && (n.matches?.('textarea, tr, tbody') || n.querySelector?.('textarea'))))) schedule();
-      }).observe(document.body, { childList: true, subtree: true });
-      // pindah tab / mode tampilan / ukuran layar / font selesai dimuat
-      ['setView', 'setDisplayMode'].forEach((fn) => {
-        const orig = window[fn];
-        if (typeof orig === 'function') window[fn] = function (...a) { const r = orig.apply(this, a); schedule(); return r; };
-      });
-      let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(schedule, 150); });
-      if (document.fonts && document.fonts.ready) document.fonts.ready.then(schedule);
-      document.addEventListener('DOMContentLoaded', schedule);
-    })();
-  </script>
-
   <script id="json-backup">
     // ==================== BACKUP & PEMULIHAN DATA (JSON) ====================
     // Menyalin isi penyimpanan web (localStorage) ke berkas .json dan sebaliknya.
@@ -6304,6 +6469,7 @@
       if (!store.classes[store.activeClass]) store.activeClass = 'X.E-1';
       if (!store.displayMode) store.displayMode = 'auto';
       if (store.rosterVer !== ROSTER_VER) applyOfficialRosterAll();
+      if (store.kktpLevelVer !== 1) applyKktpLevel();
     }
 
     function xjApply() {
@@ -6557,6 +6723,75 @@
 
     // ---------- Tindak Lanjut: hanya siswa yang punya catatan (bisa ditampilkan semua) ----------
     function toggleTlAll() { const w = ws(); w.tlShowAll = !w.tlShowAll; renderRecaps(); saveStore(false); }
+  </script>
+
+  <script id="table-fit">
+    // ==================== TABEL RAPI: kolom teks otomatis menyesuaikan tinggi isi ====================
+    (() => {
+      const fitOne = (t) => {
+        if (!t.offsetParent) return;            // tersembunyi (tab lain): lewati
+        t.style.height = 'auto';
+        const h = t.scrollHeight;
+        if (h > 0) t.style.height = (h + 2) + 'px';
+      };
+      const fitAll = (root = document) => root.querySelectorAll('.view-sec table textarea, #meta_cp, #tpList textarea').forEach(fitOne);
+      // Header bertingkat: setiap baris header menempel tepat di bawah baris sebelumnya
+      const stickHeads = () => document.querySelectorAll('.view-sec .rpt-box > table').forEach((t) => {
+        let top = 0;
+        t.querySelectorAll(':scope > thead > tr').forEach((tr) => {
+          [...tr.children].forEach((c) => { c.style.top = top + 'px'; });
+          top += tr.getBoundingClientRect().height;
+        });
+      });
+      let queued = false;
+      const schedule = () => {
+        if (queued) return; queued = true;
+        requestAnimationFrame(() => { queued = false; fitAll(); stickHeads(); });
+      };
+      window.fitTableText = schedule;
+      // ketik langsung -> tinggi ikut berubah
+      document.addEventListener('input', (e) => { if (e.target.matches && e.target.matches('.view-sec table textarea, #meta_cp, #tpList textarea')) fitOne(e.target); });
+      // tabel dirender ulang oleh aplikasi
+      new MutationObserver((list) => {
+        if (list.some((m) => [...m.addedNodes].some((n) => n.nodeType === 1 && (n.matches?.('textarea, tr, tbody') || n.querySelector?.('textarea'))))) schedule();
+      }).observe(document.body, { childList: true, subtree: true });
+      // pindah tab / mode tampilan / ukuran layar / font selesai dimuat
+      ['setView', 'setDisplayMode'].forEach((fn) => {
+        const orig = window[fn];
+        if (typeof orig === 'function') window[fn] = function (...a) { const r = orig.apply(this, a); schedule(); return r; };
+      });
+      let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(schedule, 150); });
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(schedule);
+      document.addEventListener('DOMContentLoaded', schedule);
+    })();
+    // sorot mode tampilan aktif pada pilihan di menu (HP)
+    (() => {
+      const orig = window.updateDisplayModeUI;
+      if (typeof orig !== 'function') return;
+      window.updateDisplayModeUI = function (...a) {
+        const r = orig.apply(this, a);
+        const mode = (window.store && store.displayMode) || 'auto';
+        ['auto', 'mobile', 'desktop'].forEach((m) => {
+          const b = document.getElementById('dm2_' + m);
+          if (b) b.className = 'min-h-[38px] rounded-lg text-xs font-bold cursor-pointer ' + (m === mode ? 'bg-brand-800 text-white' : 'bg-slate-100 text-slate-700');
+        });
+        return r;
+      };
+    })();
+  </script>
+  <script id="rekap-rapi">
+    // Beri atribut data-pred pada sel Predikat Rekap Nilai agar bisa diwarnai CSS (tidak mengubah data/aplikasi).
+    (() => {
+      const mark = () => {
+        document.querySelectorAll('#recapNilaiBody tr').forEach((tr) => {
+          [6, 8].forEach((i) => { const td = tr.children[i - 1]; if (td) { const v = td.textContent.trim(); if (/^[A-D]$/.test(v)) td.dataset.pred = v; else delete td.dataset.pred; } });
+        });
+      };
+      const body = document.getElementById('recapNilaiBody');
+      if (body) new MutationObserver(mark).observe(body, { childList: true });
+      document.addEventListener('DOMContentLoaded', mark);
+      mark();
+    })();
   </script>
 </body>
 </html>
